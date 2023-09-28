@@ -2,8 +2,9 @@ import express from "express";
 const router = express.Router();
 import { Question, validate } from "../models/question";
 import auth from "../middleware/auth";
+import admin from "../middleware/admin";
 
-router.get("/", auth, async (req: any, res: any, next: any) => {
+router.get("/", [auth, admin], async (req: any, res: any, next: any) => {
   const qustions = await Question.find();
   res.send(qustions);
   // console.log(qustions);

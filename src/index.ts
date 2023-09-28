@@ -13,9 +13,9 @@ app.use("/api/answer",answer);
 app.use("/api/user",user);
 app.use("/api/auth",auth);
 
-// app.get('/', (req:any,res:any)=>{
-//     res.send('my own')
-// })
+app.get('/', (req:any,res:any)=>{
+    res.send('my own')
+})
 
 
 mongoose

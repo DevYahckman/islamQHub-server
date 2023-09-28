@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
 import { Question, validate } from "../models/question";
+import auth from "../middleware/auth";
 
-router.get("/", async (req: any, res: any, next: any) => {
+router.get("/", auth, async (req: any, res: any, next: any) => {
   const qustions = await Question.find();
   res.send(qustions);
   // console.log(qustions);
@@ -18,9 +19,11 @@ router.post("/", async (req: any, res: any, next: any) => {
     const quest = new Question({
       question: req.body.question,
       category: req.body.category,
+      
     });
     await quest.save();
     res.send(quest);
+    next()
   } catch (err) {
     console.log(err);
 
